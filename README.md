@@ -2,13 +2,15 @@
 
 비공식 BIGBANG 팬 아카이브이자, 개인 보유 음원을 브라우저에서 관리·재생하는 비공개 공간입니다. 공식 사이트나 권리자를 사칭하지 않으며, 저작권이 있는 음원·가사는 무단 배포하지 않습니다.
 
-## 현재 구현: Phase 1
+## 현재 구현: Phase 1–2
 
 - Next.js 16 + TypeScript strict + Tailwind 기반 반응형 다크 UI
 - 데스크톱 사이드바, 모바일 내비게이션, 전역 플레이어 상태 기반
 - 홈 대시보드, 섹션 라우팅, 상태 확인 API (`/api/health`)
 - Supabase 환경변수 안전한 선택적 초기화
 - Profiles, 초대, 설정, 곡·앨범 카탈로그, 개인 음원 연결 메타데이터의 SQL/RLS 기반
+- IndexedDB 기반 개인 음원 파일 보관, 태그/파일명 정보 추출, 중복 감지
+- 다중 파일 선택·드래그 앤 드롭, HTML5 Audio 실제 재생, 대기열·이전/다음·셔플·반복·볼륨
 
 ## 로컬 실행
 
@@ -18,8 +20,8 @@
 
 ## 다음 단계
 
-Phase 2에서 IndexedDB 기반 다중 음원 가져오기, 메타데이터 추출/곡 매칭, 실제 HTML5 Audio 재생, 카탈로그 상세와 즐겨찾기를 구현합니다.
+Phase 3에서 TXT/LRC 가사 등록과 동기화 표시를 구현합니다. 공식 곡 카탈로그·곡 자동 매칭은 검증된 데이터 수집 이후 추가합니다.
 
 ## 배포
 
-Vercel에 저장소를 연결한 뒤 `.env.local`의 공개 Supabase 변수만 프로젝트 환경변수로 추가합니다. `SUPABASE_SERVICE_ROLE_KEY`와 `OPENAI_API_KEY`는 서버 전용 Route Handler/Server Action에서만 사용하며 브라우저로 노출하지 않습니다.
+Render 또는 Vercel에 저장소를 연결한 뒤 `.env.local`의 공개 Supabase 변수만 프로젝트 환경변수로 추가합니다. `SUPABASE_SERVICE_ROLE_KEY`와 `OPENAI_API_KEY`는 서버 전용 Route Handler/Server Action에서만 사용하며 브라우저로 노출하지 않습니다.
